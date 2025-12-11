@@ -529,6 +529,30 @@
               {
                 "to": [
                   {
+                    "shell_command": "open -a 'TickTick.app'"
+                  }
+                ],
+                "description": "Open -a 'TickTick.app'",
+                "type": "basic",
+                "from": {
+                  "key_code": "k",
+                  "modifiers": {
+                    "optional": [
+                      "any"
+                    ]
+                  }
+                },
+                "conditions": [
+                  {
+                    "type": "variable_if",
+                    "name": "hyper_sublayer_o",
+                    "value": 1
+                  }
+                ]
+              },
+              {
+                "to": [
+                  {
                     "shell_command": "open -a 'Microsoft Outlook.app'"
                   }
                 ],
