@@ -72,6 +72,7 @@ const rules: KarabinerRules[] = [
     // o = "Open" applications
     o: {
       // 1: app("1Password"),
+      a: app("Android Studio"),
       c: app("Cursor"),
       f: app("Finder"),
       g: app("Google Chrome"),
