@@ -81,6 +81,7 @@ const rules: KarabinerRules[] = [
       s: app("Safari"),
       t: app("Microsoft Teams"),
       v: app("Visual Studio Code"),
+      w: app("Whatsapp"),
       x: app("Xcode"),
       
       // Open todo list managed via *H*ypersonic
