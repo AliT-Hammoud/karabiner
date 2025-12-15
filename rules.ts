@@ -61,13 +61,11 @@ const rules: KarabinerRules[] = [
     ),
     // b = "B"rowse
     b: {
-      t: open("https://twitter.com"),
-      // Quarterly "P"lan
-      p: open("https://mxstbr.com/cal"),
-      y: open("https://news.ycombinator.com"),
       f: open("https://facebook.com"),
-      r: open("https://reddit.com"),
-      h: open("https://hashnode.com/draft"),
+      n: open("https://news.ycombinator.com"),
+      t: open("https://twitter.com"),
+      y: open("https://youtube.com"),
+      
     },
     // o = "Open" applications
     o: {
