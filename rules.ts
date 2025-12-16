@@ -77,6 +77,7 @@ const rules: KarabinerRules[] = [
       g: app("Google Chrome"),
       i: app("iTerm-2"),
       k: app("TickTick"),
+      l: app("WalletApp"),
       m: app("Microsoft Outlook"),
       n: app("Notion"),
       s: app("Safari"),
