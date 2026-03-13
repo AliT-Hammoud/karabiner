@@ -81,7 +81,7 @@ const rules: KarabinerRules[] = [
       l: app("WalletApp"),
       m: app("Microsoft Outlook"),
       n: app("Notion"),
-      s: app("Safari"),
+      s: app("Simulator"),
       t: app("Microsoft Teams"),
       v: app("Visual Studio Code"),
       w: app("Whatsapp"),
