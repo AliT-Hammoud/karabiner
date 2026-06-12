@@ -180,6 +180,14 @@ const rules: KarabinerRules[] = [
 
     // s = "System"
     s: {
+      // "A"ll apps via Mission Control
+      a: {
+        to: [
+          {
+            key_code: "mission_control",
+          },
+        ],
+      },
       u: {
         to: [
           {
