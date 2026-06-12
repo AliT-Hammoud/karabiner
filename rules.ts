@@ -1,6 +1,6 @@
 import fs from "fs";
 import { KarabinerRules } from "./types";
-import { createHyperSubLayers, app, open, window, shell } from "./utils";
+import { createHyperSubLayers, app, appWithPicker, open, window, shell } from "./utils";
 
 const rules: KarabinerRules[] = [
   // Define the Hyper key itself
@@ -85,7 +85,7 @@ const rules: KarabinerRules[] = [
       t: app("Microsoft Teams"),
       v: app("Visual Studio Code"),
       w: app("Whatsapp"),
-      x: app("Xcode"),
+      x: appWithPicker("Xcode"),
       
       // Open todo list managed via *H*ypersonic
       // h: open(

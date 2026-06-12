@@ -211,3 +211,16 @@ export function window(name: string): LayerCommand {
 export function app(name: string): LayerCommand {
   return open(`-a '${name}.app'`);
 }
+
+/**
+ * Like app(), but shows a native window picker when multiple windows are open.
+ * Falls back to plain focus when only one window exists, or opens the app if not running.
+ */
+export function appWithPicker(name: string): LayerCommand {
+  return {
+    to: [{
+      shell_command: `osascript ~/Documents/Workspace/MyApps/karabiner/scripts/pick_window.applescript '${name}'`,
+    }],
+    description: `Open ${name} with window picker`,
+  };
+}

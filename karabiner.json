@@ -721,10 +721,10 @@
               {
                 "to": [
                   {
-                    "shell_command": "open -a 'Xcode.app'"
+                    "shell_command": "osascript ~/Documents/Workspace/MyApps/karabiner/scripts/pick_window.applescript 'Xcode'"
                   }
                 ],
-                "description": "Open -a 'Xcode.app'",
+                "description": "Open Xcode with window picker",
                 "type": "basic",
                 "from": {
                   "key_code": "x",
