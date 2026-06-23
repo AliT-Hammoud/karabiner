@@ -1,0 +1,67 @@
+{
+  "": {
+    "dependencies": "/Users/alihammoud1/Documents/Workspace/MyApps/karabiner/app/HyperKey/.build/arm64-apple-macosx/release/HyperKey.build/HyperKey.d",
+    "object": "/Users/alihammoud1/Documents/Workspace/MyApps/karabiner/app/HyperKey/.build/arm64-apple-macosx/release/HyperKey.build/HyperKey.o",
+    "swift-dependencies": "/Users/alihammoud1/Documents/Workspace/MyApps/karabiner/app/HyperKey/.build/arm64-apple-macosx/release/HyperKey.build/primary.swiftdeps"
+  },
+  "/Users/alihammoud1/Documents/Workspace/MyApps/karabiner/app/HyperKey/Sources/HyperKey/ActionRunner.swift": {
+    "object": "/Users/alihammoud1/Documents/Workspace/MyApps/karabiner/app/HyperKey/.build/arm64-apple-macosx/release/HyperKey.build/ActionRunner.swift.o",
+    "swiftmodule": "/Users/alihammoud1/Documents/Workspace/MyApps/karabiner/app/HyperKey/.build/arm64-apple-macosx/release/HyperKey.build/ActionRunner~partial.swiftmodule",
+    "swift-dependencies": "/Users/alihammoud1/Documents/Workspace/MyApps/karabiner/app/HyperKey/.build/arm64-apple-macosx/release/HyperKey.build/ActionRunner.swiftdeps",
+    "diagnostics": "/Users/alihammoud1/Documents/Workspace/MyApps/karabiner/app/HyperKey/.build/arm64-apple-macosx/release/HyperKey.build/ActionRunner.dia"
+  },
+  "/Users/alihammoud1/Documents/Workspace/MyApps/karabiner/app/HyperKey/Sources/HyperKey/AppLauncher.swift": {
+    "object": "/Users/alihammoud1/Documents/Workspace/MyApps/karabiner/app/HyperKey/.build/arm64-apple-macosx/release/HyperKey.build/AppLauncher.swift.o",
+    "swiftmodule": "/Users/alihammoud1/Documents/Workspace/MyApps/karabiner/app/HyperKey/.build/arm64-apple-macosx/release/HyperKey.build/AppLauncher~partial.swiftmodule",
+    "swift-dependencies": "/Users/alihammoud1/Documents/Workspace/MyApps/karabiner/app/HyperKey/.build/arm64-apple-macosx/release/HyperKey.build/AppLauncher.swiftdeps",
+    "diagnostics": "/Users/alihammoud1/Documents/Workspace/MyApps/karabiner/app/HyperKey/.build/arm64-apple-macosx/release/HyperKey.build/AppLauncher.dia"
+  },
+  "/Users/alihammoud1/Documents/Workspace/MyApps/karabiner/app/HyperKey/Sources/HyperKey/AppModel.swift": {
+    "object": "/Users/alihammoud1/Documents/Workspace/MyApps/karabiner/app/HyperKey/.build/arm64-apple-macosx/release/HyperKey.build/AppModel.swift.o",
+    "swiftmodule": "/Users/alihammoud1/Documents/Workspace/MyApps/karabiner/app/HyperKey/.build/arm64-apple-macosx/release/HyperKey.build/AppModel~partial.swiftmodule",
+    "swift-dependencies": "/Users/alihammoud1/Documents/Workspace/MyApps/karabiner/app/HyperKey/.build/arm64-apple-macosx/release/HyperKey.build/AppModel.swiftdeps",
+    "diagnostics": "/Users/alihammoud1/Documents/Workspace/MyApps/karabiner/app/HyperKey/.build/arm64-apple-macosx/release/HyperKey.build/AppModel.dia"
+  },
+  "/Users/alihammoud1/Documents/Workspace/MyApps/karabiner/app/HyperKey/Sources/HyperKey/Config.swift": {
+    "object": "/Users/alihammoud1/Documents/Workspace/MyApps/karabiner/app/HyperKey/.build/arm64-apple-macosx/release/HyperKey.build/Config.swift.o",
+    "swiftmodule": "/Users/alihammoud1/Documents/Workspace/MyApps/karabiner/app/HyperKey/.build/arm64-apple-macosx/release/HyperKey.build/Config~partial.swiftmodule",
+    "swift-dependencies": "/Users/alihammoud1/Documents/Workspace/MyApps/karabiner/app/HyperKey/.build/arm64-apple-macosx/release/HyperKey.build/Config.swiftdeps",
+    "diagnostics": "/Users/alihammoud1/Documents/Workspace/MyApps/karabiner/app/HyperKey/.build/arm64-apple-macosx/release/HyperKey.build/Config.dia"
+  },
+  "/Users/alihammoud1/Documents/Workspace/MyApps/karabiner/app/HyperKey/Sources/HyperKey/HyperStateMachine.swift": {
+    "object": "/Users/alihammoud1/Documents/Workspace/MyApps/karabiner/app/HyperKey/.build/arm64-apple-macosx/release/HyperKey.build/HyperStateMachine.swift.o",
+    "swiftmodule": "/Users/alihammoud1/Documents/Workspace/MyApps/karabiner/app/HyperKey/.build/arm64-apple-macosx/release/HyperKey.build/HyperStateMachine~partial.swiftmodule",
+    "swift-dependencies": "/Users/alihammoud1/Documents/Workspace/MyApps/karabiner/app/HyperKey/.build/arm64-apple-macosx/release/HyperKey.build/HyperStateMachine.swiftdeps",
+    "diagnostics": "/Users/alihammoud1/Documents/Workspace/MyApps/karabiner/app/HyperKey/.build/arm64-apple-macosx/release/HyperKey.build/HyperStateMachine.dia"
+  },
+  "/Users/alihammoud1/Documents/Workspace/MyApps/karabiner/app/HyperKey/Sources/HyperKey/KeyCodes.swift": {
+    "object": "/Users/alihammoud1/Documents/Workspace/MyApps/karabiner/app/HyperKey/.build/arm64-apple-macosx/release/HyperKey.build/KeyCodes.swift.o",
+    "swiftmodule": "/Users/alihammoud1/Documents/Workspace/MyApps/karabiner/app/HyperKey/.build/arm64-apple-macosx/release/HyperKey.build/KeyCodes~partial.swiftmodule",
+    "swift-dependencies": "/Users/alihammoud1/Documents/Workspace/MyApps/karabiner/app/HyperKey/.build/arm64-apple-macosx/release/HyperKey.build/KeyCodes.swiftdeps",
+    "diagnostics": "/Users/alihammoud1/Documents/Workspace/MyApps/karabiner/app/HyperKey/.build/arm64-apple-macosx/release/HyperKey.build/KeyCodes.dia"
+  },
+  "/Users/alihammoud1/Documents/Workspace/MyApps/karabiner/app/HyperKey/Sources/HyperKey/KeyboardEngine.swift": {
+    "object": "/Users/alihammoud1/Documents/Workspace/MyApps/karabiner/app/HyperKey/.build/arm64-apple-macosx/release/HyperKey.build/KeyboardEngine.swift.o",
+    "swiftmodule": "/Users/alihammoud1/Documents/Workspace/MyApps/karabiner/app/HyperKey/.build/arm64-apple-macosx/release/HyperKey.build/KeyboardEngine~partial.swiftmodule",
+    "swift-dependencies": "/Users/alihammoud1/Documents/Workspace/MyApps/karabiner/app/HyperKey/.build/arm64-apple-macosx/release/HyperKey.build/KeyboardEngine.swiftdeps",
+    "diagnostics": "/Users/alihammoud1/Documents/Workspace/MyApps/karabiner/app/HyperKey/.build/arm64-apple-macosx/release/HyperKey.build/KeyboardEngine.dia"
+  },
+  "/Users/alihammoud1/Documents/Workspace/MyApps/karabiner/app/HyperKey/Sources/HyperKey/MenuBarApp.swift": {
+    "object": "/Users/alihammoud1/Documents/Workspace/MyApps/karabiner/app/HyperKey/.build/arm64-apple-macosx/release/HyperKey.build/MenuBarApp.swift.o",
+    "swiftmodule": "/Users/alihammoud1/Documents/Workspace/MyApps/karabiner/app/HyperKey/.build/arm64-apple-macosx/release/HyperKey.build/MenuBarApp~partial.swiftmodule",
+    "swift-dependencies": "/Users/alihammoud1/Documents/Workspace/MyApps/karabiner/app/HyperKey/.build/arm64-apple-macosx/release/HyperKey.build/MenuBarApp.swiftdeps",
+    "diagnostics": "/Users/alihammoud1/Documents/Workspace/MyApps/karabiner/app/HyperKey/.build/arm64-apple-macosx/release/HyperKey.build/MenuBarApp.dia"
+  },
+  "/Users/alihammoud1/Documents/Workspace/MyApps/karabiner/app/HyperKey/Sources/HyperKey/SettingsView.swift": {
+    "object": "/Users/alihammoud1/Documents/Workspace/MyApps/karabiner/app/HyperKey/.build/arm64-apple-macosx/release/HyperKey.build/SettingsView.swift.o",
+    "swiftmodule": "/Users/alihammoud1/Documents/Workspace/MyApps/karabiner/app/HyperKey/.build/arm64-apple-macosx/release/HyperKey.build/SettingsView~partial.swiftmodule",
+    "swift-dependencies": "/Users/alihammoud1/Documents/Workspace/MyApps/karabiner/app/HyperKey/.build/arm64-apple-macosx/release/HyperKey.build/SettingsView.swiftdeps",
+    "diagnostics": "/Users/alihammoud1/Documents/Workspace/MyApps/karabiner/app/HyperKey/.build/arm64-apple-macosx/release/HyperKey.build/SettingsView.dia"
+  },
+  "/Users/alihammoud1/Documents/Workspace/MyApps/karabiner/app/HyperKey/Sources/HyperKey/WindowManager.swift": {
+    "object": "/Users/alihammoud1/Documents/Workspace/MyApps/karabiner/app/HyperKey/.build/arm64-apple-macosx/release/HyperKey.build/WindowManager.swift.o",
+    "swiftmodule": "/Users/alihammoud1/Documents/Workspace/MyApps/karabiner/app/HyperKey/.build/arm64-apple-macosx/release/HyperKey.build/WindowManager~partial.swiftmodule",
+    "swift-dependencies": "/Users/alihammoud1/Documents/Workspace/MyApps/karabiner/app/HyperKey/.build/arm64-apple-macosx/release/HyperKey.build/WindowManager.swiftdeps",
+    "diagnostics": "/Users/alihammoud1/Documents/Workspace/MyApps/karabiner/app/HyperKey/.build/arm64-apple-macosx/release/HyperKey.build/WindowManager.dia"
+  }
+}

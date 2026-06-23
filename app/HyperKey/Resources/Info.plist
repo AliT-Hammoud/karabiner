@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>CFBundleName</key>
+    <string>HyperKey</string>
+    <key>CFBundleDisplayName</key>
+    <string>HyperKey</string>
+    <key>CFBundleIdentifier</key>
+    <string>com.alihammoud.hyperkey</string>
+    <key>CFBundleVersion</key>
+    <string>1</string>
+    <key>CFBundleShortVersionString</key>
+    <string>1.0</string>
+    <key>CFBundlePackageType</key>
+    <string>APPL</string>
+    <key>CFBundleExecutable</key>
+    <string>HyperKey</string>
+    <key>LSMinimumSystemVersion</key>
+    <string>14.0</string>
+    <key>LSUIElement</key>
+    <true/>
+    <key>NSHumanReadableCopyright</key>
+    <string>HyperKey — native replacement for the Karabiner Hyper config.</string>
+    <key>NSInputMonitoringUsageDescription</key>
+    <string>HyperKey observes the keyboard to implement the Hyper key and its layers.</string>
+    <key>NSAppleEventsUsageDescription</key>
+    <string>HyperKey controls application windows for window management.</string>
+</dict>
+</plist>
