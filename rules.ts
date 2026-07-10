@@ -73,7 +73,7 @@ const rules: KarabinerRules[] = [
       // 1: app("1Password"),
       a: app("Android Studio"),
       b: app("Obsidian"),
-      c: app("Cursor"),
+      c: app("Claude"),
       f: app("Finder"),
       g: app("Google Chrome"),
       i: app("iTerm-2"),
