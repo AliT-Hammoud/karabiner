@@ -368,6 +368,36 @@ fs.writeFileSync(
       profiles: [
         {
           name: "Default",
+          // The OnMicro K68 is a PC-layout keyboard: the key next to the spacebar
+          // is Alt, so macOS sees Option where Command should be. Swap them back,
+          // on that keyboard only — the built-in Apple keyboard is already correct.
+          devices: [
+            {
+              identifiers: {
+                is_keyboard: true,
+                vendor_id: 39658,
+                product_id: 4137,
+              },
+              simple_modifications: [
+                {
+                  from: { key_code: "left_option" },
+                  to: [{ key_code: "left_command" }],
+                },
+                {
+                  from: { key_code: "left_command" },
+                  to: [{ key_code: "left_option" }],
+                },
+                {
+                  from: { key_code: "right_option" },
+                  to: [{ key_code: "right_command" }],
+                },
+                {
+                  from: { key_code: "right_command" },
+                  to: [{ key_code: "right_option" }],
+                },
+              ],
+            },
+          ],
           complex_modifications: {
             rules,
           },
