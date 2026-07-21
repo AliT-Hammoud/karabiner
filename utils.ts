@@ -1,4 +1,4 @@
-import { To, KeyCode, Manipulator, KarabinerRules } from "./types";
+import { To, KeyCode, Manipulator, KarabinerRules, Conditions } from "./types";
 
 /**
  * Custom way to describe a command in a layer
@@ -6,11 +6,17 @@ import { To, KeyCode, Manipulator, KarabinerRules } from "./types";
 export interface LayerCommand {
   to: To[];
   description?: string;
+  /**
+   * Extra conditions (e.g. only in a specific app) on top of the sublayer ones.
+   * Map a key to an array of commands to have app-specific variants: the first
+   * one whose conditions match wins, so put the specific ones first.
+   */
+  conditions?: Conditions[];
 }
 
 type HyperKeySublayer = {
   // The ? is necessary, otherwise we'd have to define something for _every_ key code
-  [key_code in KeyCode]?: LayerCommand;
+  [key_code in KeyCode]?: LayerCommand | LayerCommand[];
 };
 
 /**
@@ -75,25 +81,31 @@ export function createHyperSubLayer(
       ],
     },
     // Define the individual commands that are meant to trigger in the sublayer
-    ...(Object.keys(commands) as (keyof typeof commands)[]).map(
-      (command_key): Manipulator => ({
-        ...commands[command_key],
-        type: "basic" as const,
-        from: {
-          key_code: command_key,
-          modifiers: {
-            optional: ["any"],
+    ...(Object.keys(commands) as (keyof typeof commands)[]).flatMap(
+      (command_key): Manipulator[] => {
+        const value = commands[command_key]!;
+        const variants = Array.isArray(value) ? value : [value];
+
+        return variants.map(({ conditions = [], ...command }) => ({
+          ...command,
+          type: "basic" as const,
+          from: {
+            key_code: command_key,
+            modifiers: {
+              optional: ["any"],
+            },
           },
-        },
-        // Only trigger this command if the variable is 1 (i.e., if Hyper + sublayer is held)
-        conditions: [
-          {
-            type: "variable_if",
-            name: subLayerVariableName,
-            value: 1,
-          },
-        ],
-      })
+          // Only trigger this command if the variable is 1 (i.e., if Hyper + sublayer is held)
+          conditions: [
+            {
+              type: "variable_if" as const,
+              name: subLayerVariableName,
+              value: 1,
+            },
+            ...conditions,
+          ],
+        }));
+      }
     ),
   ];
 }

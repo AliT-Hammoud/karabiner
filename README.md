@@ -25,6 +25,108 @@ You probably don't want to use my exact configuration, as it's optimized for my 
 4. run `yarn build:deploy` to build `karabiner.json` from `rules.ts` and copy it directly into `~/.config/karabiner/` (or run `yarn deploy` to only copy an already-built `karabiner.json`)
 5. [Restart karabiner_console_user_server](https://karabiner-elements.pqrs.org/docs/manual/misc/configuration-file-path/) with `` launchctl kickstart -k gui/$(id -u)/org.pqrs.service.agent.karabiner_console_user_server ``
 
+## Keybindings
+
+Caps Lock is the **Hyper** key (⌃⌥⇧⌘). Tapped on its own it sends `Escape`; held down it activates a sublayer, so every binding below is `Hyper + <sublayer> + <key>`.
+
+`Hyper + Space` creates a Notion todo via Raycast.
+
+### `b` — Browse
+
+| Key | Opens |
+| --- | --- |
+| `f` | facebook.com |
+| `g` | github.com |
+| `n` | news.ycombinator.com |
+| `t` | twitter.com |
+| `y` | youtube.com |
+
+### `o` — Open applications
+
+| Key | App | Key | App |
+| --- | --- | --- | --- |
+| `a` | Android Studio | `n` | Notion |
+| `b` | O**b**sidian | `p` | Postman |
+| `c` | Claude | `s` | Simulator |
+| `f` | Finder | `t` | Microsoft Teams |
+| `g` | Google Chrome | `v` | Visual Studio Code |
+| `i` | iTerm2 | `w` | WhatsApp |
+| `k` | TickTick | `x` | Xcode (window picker) |
+| `l` | WalletApp | `m` | Microsoft Outlook |
+
+`x` runs `scripts/pick_window.applescript` so you can choose between multiple open Xcode windows instead of just focusing the app.
+
+### `w` — Window
+
+| Key | Action |
+| --- | --- |
+| `h` / `l` | Left / right half |
+| `k` / `j` | Top / bottom half |
+| `f` | Maximize |
+| `y` / `o` | Previous / next display |
+| `u` / `i` | Previous / next tab |
+| `n` | Next window of the same app |
+| `b` / `m` | Back / forward |
+| `;` | Hide window |
+
+Window positioning goes through Raycast's window management commands.
+
+**Tab switching (`u` / `i`)** sends `⌃⇧Tab` / `⌃Tab` in most apps. iTerm2 maps those to *most-recently-used* tab order, so when iTerm2 is frontmost the same keys send `⌘⇧[` / `⌘⇧]` instead — iTerm2's positional Previous/Next Tab. This is implemented as two manipulators on the same key, the iTerm2-conditional one first; see the `frontmost_application_if` condition in `rules.ts`.
+
+### `s` — System
+
+| Key | Action |
+| --- | --- |
+| `a` | Mission Control (**a**ll windows) |
+| `u` / `j` | Volume up / down |
+| `i` / `k` | Brightness up / down |
+| `l` | **L**ock screen |
+| `p` | Play / pause |
+| `;` | Next track |
+| `e` | Toggle Elgato key light |
+| `d` | Toggle **d**o not disturb |
+| `t` | Toggle system **t**heme |
+| `c` | Open **c**amera |
+| `v` | **V**oice dictation (`⌥Space`) |
+
+### `v` — moVe
+
+On the left hand so `hjkl` stay vim-like.
+
+| Key | Action |
+| --- | --- |
+| `h` `j` `k` `l` | Arrow keys |
+| `u` / `i` | Page down / page up |
+| `m` | Magic**m**ove (homerow.app) |
+| `s` | **S**croll mode (homerow.app) |
+| `d` | `⇧⌘D` |
+
+### `c` — musi**C**
+
+| Key | Action |
+| --- | --- |
+| `p` | Play / pause |
+| `n` / `b` | Next / previous track |
+
+### `r` — Raycast
+
+| Key | Command |
+| --- | --- |
+| `c` | Color picker |
+| `n` | Dismiss notifications |
+| `l` | Create shortlink |
+| `e` | Search emoji & symbols |
+| `p` | Confetti |
+| `a` | Raycast AI chat |
+| `s` | Silent mention |
+| `h` | Clipboard history |
+| `1` / `2` | Connect favorite Bluetooth device 1 / 2 |
+
+### Non-Hyper rules
+
+- **OnMicro K68 keyboard:** it's a PC layout, so the key next to the spacebar reports as Option. Command and Option are swapped back on that device only; the built-in Apple keyboard is untouched.
+- **Minecraft:** Backspace sends Space while Minecraft is focused.
+
 ## Development
 
 ```

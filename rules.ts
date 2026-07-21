@@ -131,24 +131,60 @@ const rules: KarabinerRules[] = [
       h: window("left-half"),
       l: window("right-half"),
       f: window("maximize"),
-      u: {
-        description: "Window: Previous Tab",
-        to: [
-          {
-            key_code: "tab",
-            modifiers: ["right_control", "right_shift"],
-          },
-        ],
-      },
-      i: {
-        description: "Window: Next Tab",
-        to: [
-          {
-            key_code: "tab",
-            modifiers: ["right_control"],
-          },
-        ],
-      },
+      // iTerm2 maps ⌃⇧Tab/⌃Tab to most-recently-used tab order, so use its
+      // positional Previous/Next Tab shortcuts (⌘⇧[ / ⌘⇧]) there instead.
+      u: [
+        {
+          description: "Window: Previous Tab (iTerm2)",
+          conditions: [
+            {
+              type: "frontmost_application_if",
+              bundle_identifiers: ["^com\\.googlecode\\.iterm2$"],
+            },
+          ],
+          to: [
+            {
+              key_code: "open_bracket",
+              modifiers: ["right_command", "right_shift"],
+            },
+          ],
+        },
+        {
+          description: "Window: Previous Tab",
+          to: [
+            {
+              key_code: "tab",
+              modifiers: ["right_control", "right_shift"],
+            },
+          ],
+        },
+      ],
+      i: [
+        {
+          description: "Window: Next Tab (iTerm2)",
+          conditions: [
+            {
+              type: "frontmost_application_if",
+              bundle_identifiers: ["^com\\.googlecode\\.iterm2$"],
+            },
+          ],
+          to: [
+            {
+              key_code: "close_bracket",
+              modifiers: ["right_command", "right_shift"],
+            },
+          ],
+        },
+        {
+          description: "Window: Next Tab",
+          to: [
+            {
+              key_code: "tab",
+              modifiers: ["right_control"],
+            },
+          ],
+        },
+      ],
       n: {
         description: "Window: Next Window",
         to: [
