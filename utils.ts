@@ -147,6 +147,9 @@ export function createHyperSubLayers(subLayers: {
                   name: subLayerVariable,
                   value: 0,
                 })),
+                // This literal replaces the spread value's conditions, so
+                // re-append the command's own (e.g. app-specific) ones
+                ...(value.conditions ?? []),
               ],
             },
           ],
@@ -214,6 +217,21 @@ export function window(name: string): LayerCommand {
       },
     ],
     description: `Window: ${name}`,
+  };
+}
+
+/**
+ * Move the frontmost window to a connected display, matched by name substring,
+ * and maximize it there. No-op when that display isn't connected.
+ */
+export function display(name: string): LayerCommand {
+  return {
+    to: [
+      {
+        shell_command: `osascript -l JavaScript ~/Documents/Workspace/MyApps/karabiner/scripts/move_to_display.js '${name}'`,
+      },
+    ],
+    description: `Window: Move to ${name}`,
   };
 }
 

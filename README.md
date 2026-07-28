@@ -31,6 +31,10 @@ Caps Lock is the **Hyper** key (⌃⌥⇧⌘). Tapped on its own it sends `Escap
 
 `Hyper + Space` creates a Notion todo via Raycast.
 
+`Hyper + ←↑↓→` switches iTerm2 split panes (`⌘⌥` + arrow) when iTerm2 is frontmost, and does nothing elsewhere. These sit at the top level rather than under a sublayer so pane navigation is a single chord, with no dependence on how long the sublayer key is held.
+
+For a top-level command to stay app-gated, `createHyperSubLayers()` in `utils.ts` re-appends the command's own `conditions` after the hyper/sublayer-variable conditions it generates — that generated array is a literal and would otherwise replace them, firing the binding in every app. Sublayer commands already get this for free from `createHyperSubLayer()`.
+
 ### `b` — Browse
 
 | Key | Opens |
@@ -70,15 +74,34 @@ Because the app name only arrives at runtime, the script can't compile app-speci
 | `h` / `l` | Left / right half |
 | `k` / `j` | Top / bottom half |
 | `f` | Maximize |
+| `e` | Entire screen (native fullscreen, toggles) |
 | `y` / `o` | Previous / next display |
 | `u` / `i` | Previous / next tab |
 | `n` | Next window of the same app |
 | `b` / `m` | Back / forward |
 | `;` | Hide window |
 
-Window positioning goes through Raycast's window management commands.
+Window positioning goes through Raycast's window management commands. Split panes are on `Hyper + ←↑↓→` rather than in this sublayer.
 
 **Tab switching (`u` / `i`)** sends `⌃⇧Tab` / `⌃Tab` in most apps. iTerm2 maps those to *most-recently-used* tab order, so when iTerm2 is frontmost the same keys send `⌘⇧[` / `⌘⇧]` instead — iTerm2's positional Previous/Next Tab. This is implemented as two manipulators on the same key, the iTerm2-conditional one first; see the `frontmost_application_if` condition in `rules.ts`.
+
+### `d` — Display
+
+| Key | Action |
+| --- | --- |
+| `u` | Move frontmost window to the built-in display |
+| `i` | Move frontmost window to the MSI |
+| `o` | Move frontmost window to the L24 |
+
+Unlike `w`'s previous/next display, these target a specific monitor, which matters once
+three are connected. `scripts/move_to_display.js` matches the display by name substring
+(via `NSScreen.localizedName`) and maximizes the window on it, so rearranging or
+unplugging monitors doesn't break the bindings — a disconnected display is a no-op.
+
+The script moves the window through the app's own AppleScript `bounds`, which needs no
+Accessibility permission and covers scriptable apps (iTerm2, Chrome, Finder). It falls
+back to System Events for everything else, but that path is inert unless `osascript` is
+granted Accessibility, so non-scriptable apps (VS Code, Postman) won't move.
 
 ### `s` — System
 

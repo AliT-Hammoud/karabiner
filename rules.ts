@@ -1,6 +1,14 @@
 import fs from "fs";
 import { KarabinerRules } from "./types";
-import { createHyperSubLayers, app, appWithPicker, open, window, shell } from "./utils";
+import {
+  createHyperSubLayers,
+  app,
+  appWithPicker,
+  display,
+  open,
+  window,
+  shell,
+} from "./utils";
 
 const rules: KarabinerRules[] = [
   // Define the Hyper key itself
@@ -59,6 +67,68 @@ const rules: KarabinerRules[] = [
     spacebar: open(
       "raycast://extensions/stellate/mxstbr-commands/create-notion-todo"
     ),
+    // iTerm2: hyper + arrows switches split panes directly (⌘⌥ + arrow),
+    // no sublayer needed — faster and immune to w-release timing.
+    left_arrow: {
+      description: "iTerm2: Pane Left",
+      conditions: [
+        {
+          type: "frontmost_application_if",
+          bundle_identifiers: ["^com\\.googlecode\\.iterm2$"],
+        },
+      ],
+      to: [
+        {
+          key_code: "left_arrow",
+          modifiers: ["right_command", "right_option"],
+        },
+      ],
+    },
+    right_arrow: {
+      description: "iTerm2: Pane Right",
+      conditions: [
+        {
+          type: "frontmost_application_if",
+          bundle_identifiers: ["^com\\.googlecode\\.iterm2$"],
+        },
+      ],
+      to: [
+        {
+          key_code: "right_arrow",
+          modifiers: ["right_command", "right_option"],
+        },
+      ],
+    },
+    up_arrow: {
+      description: "iTerm2: Pane Up",
+      conditions: [
+        {
+          type: "frontmost_application_if",
+          bundle_identifiers: ["^com\\.googlecode\\.iterm2$"],
+        },
+      ],
+      to: [
+        {
+          key_code: "up_arrow",
+          modifiers: ["right_command", "right_option"],
+        },
+      ],
+    },
+    down_arrow: {
+      description: "iTerm2: Pane Down",
+      conditions: [
+        {
+          type: "frontmost_application_if",
+          bundle_identifiers: ["^com\\.googlecode\\.iterm2$"],
+        },
+      ],
+      to: [
+        {
+          key_code: "down_arrow",
+          modifiers: ["right_command", "right_option"],
+        },
+      ],
+    },
     // b = "B"rowse
     b: {
       f: open("https://facebook.com"),
@@ -131,6 +201,17 @@ const rules: KarabinerRules[] = [
       h: window("left-half"),
       l: window("right-half"),
       f: window("maximize"),
+      // "E"ntire screen: native macOS fullscreen, which unlike f also hides the
+      // menu bar and Dock. Toggles, so the same keys exit fullscreen.
+      e: {
+        description: "Window: Fullscreen",
+        to: [
+          {
+            key_code: "f",
+            modifiers: ["right_control", "right_command"],
+          },
+        ],
+      },
       // iTerm2 maps ⌃⇧Tab/⌃Tab to most-recently-used tab order, so use its
       // positional Previous/Next Tab shortcuts (⌘⇧[ / ⌘⇧]) there instead.
       u: [
@@ -213,6 +294,15 @@ const rules: KarabinerRules[] = [
           },
         ],
       },
+    },
+
+    // d = "Display" — move the frontmost window to a specific monitor.
+    // Matched by name substring so unplugging or rearranging monitors doesn't
+    // break it; a disconnected display is a silent no-op.
+    d: {
+      u: display("Built-in"),
+      i: display("MSI"),
+      o: display("L24"),
     },
 
     // s = "System"
