@@ -54,7 +54,14 @@ Caps Lock is the **Hyper** key (⌃⌥⇧⌘). Tapped on its own it sends `Escap
 | `k` | TickTick | `x` | Xcode (window picker) |
 | `l` | WalletApp | `m` | Microsoft Outlook |
 
-`x` runs `scripts/pick_window.applescript` so you can choose between multiple open Xcode windows instead of just focusing the app.
+`x` goes through `appWithPicker()` in `utils.ts`, which runs `scripts/pick_window.applescript` so you can choose between multiple open Xcode windows instead of just focusing the app. The script is app-agnostic — it takes the app name as its only argument:
+
+- **Labels come from each window's document path**, formatted like Xcode's "Open Recent" menu — `E-Sim.xcworkspace — esim-b2c-ios` — so different checkouts of the same project stay distinguishable.
+- **Duplicates get disambiguated**: several windows on the same project are tagged with the file each one is showing (`E-Sim.xcworkspace — esim-b2c-ios (Shared.swift)`), and anything still identical gets a trailing `[n]`.
+- **Fallbacks**: apps that don't expose document paths fall back to window titles containing an em dash (which drops Xcode auxiliary windows like "Archives" and "Organizer"), then to all named windows.
+- **Shortcuts**: one window is focused directly without a prompt, and if the app isn't running it's just launched.
+
+Because the app name only arrives at runtime, the script can't compile app-specific terminology (`document`, `path`) ahead of time; it builds the AppleScript as text and evaluates it with `run script` against the real app. Windows are raised by their window `id` where available, falling back to the title.
 
 ### `w` — Window
 
