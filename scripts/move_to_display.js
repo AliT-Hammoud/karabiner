@@ -3,6 +3,9 @@
 // Move the frontmost window to a display, and maximize it there.
 // Usage: osascript -l JavaScript move_to_display.js 2      (by position)
 //        osascript -l JavaScript move_to_display.js 'MSI'  (by name)
+//        osascript -l JavaScript move_to_display.js 2 com.apple.dt.Xcode ...
+// With bundle ids, every window of each of those apps is moved instead of the
+// frontmost one; apps that aren't running are skipped.
 //
 // A number picks by position, so the same shortcut works at any desk:
 // 1 is the built-in display, then externals left to right (top to bottom when
@@ -33,6 +36,20 @@ function run(argv) {
 
   var rect = accessibilityRect(target);
   var systemEvents = Application("System Events");
+
+  var bundleIds = argv.slice(1);
+  if (bundleIds.length > 0) {
+    bundleIds.forEach(function (bundleId) {
+      var matches = systemEvents.applicationProcesses.whose({ bundleIdentifier: bundleId });
+      if (matches.length === 0) {
+        debug(pattern + ": " + bundleId + " not running");
+        return;
+      }
+      moveApp(pattern, bundleId, matches[0], rect, true);
+    });
+    return;
+  }
+
   var process = systemEvents.applicationProcesses.whose({ frontmost: true })[0];
 
   // Reading a process's name/bundle id doesn't need Accessibility; only touching
@@ -44,12 +61,15 @@ function run(argv) {
     debug("no frontmost app: " + e);
     return;
   }
+  moveApp(pattern, bundleId, process, rect, false);
+}
 
-  if (moveViaAppleScript(bundleId, rect)) {
+function moveApp(pattern, bundleId, process, rect, allWindows) {
+  if (moveViaAppleScript(bundleId, rect, allWindows)) {
     debug(pattern + ": moved " + bundleId + " via AppleScript");
     return;
   }
-  if (moveViaAccessibility(process, rect)) {
+  if (moveViaAccessibility(process, rect, allWindows)) {
     debug(pattern + ": moved " + bundleId + " via Accessibility");
     return;
   }
@@ -99,9 +119,12 @@ function accessibilityRect(screen) {
   };
 }
 
-function moveViaAppleScript(bundleId, rect) {
+function moveViaAppleScript(bundleId, rect, allWindows) {
   try {
-    Application(bundleId).windows[0].bounds = rect;
+    var windows = Application(bundleId).windows;
+    var count = allWindows ? windows.length : 1;
+    if (count === 0) return false;
+    for (var i = 0; i < count; i++) windows[i].bounds = rect;
     return true;
   } catch (e) {
     // Not scriptable, or no window open.
@@ -109,14 +132,18 @@ function moveViaAppleScript(bundleId, rect) {
   }
 }
 
-function moveViaAccessibility(process, rect) {
+function moveViaAccessibility(process, rect, allWindows) {
   try {
-    var window = process.windows[0];
-    // Position first so the window lands on the target display, then size (which
-    // that display may clamp), then position again to pin the top-left corner.
-    window.position = [rect.x, rect.y];
-    window.size = [rect.width, rect.height];
-    window.position = [rect.x, rect.y];
+    var windows = process.windows;
+    var count = allWindows ? windows.length : 1;
+    for (var i = 0; i < count; i++) {
+      var window = windows[i];
+      // Position first so the window lands on the target display, then size (which
+      // that display may clamp), then position again to pin the top-left corner.
+      window.position = [rect.x, rect.y];
+      window.size = [rect.width, rect.height];
+      window.position = [rect.x, rect.y];
+    }
     return true;
   } catch (e) {
     // Fullscreen windows, apps with no accessible window, or — most likely —

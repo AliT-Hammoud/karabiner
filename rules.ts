@@ -5,6 +5,7 @@ import {
   app,
   appWithPicker,
   display,
+  layout,
   open,
   window,
   shell,
@@ -296,13 +297,25 @@ const rules: KarabinerRules[] = [
       },
     },
 
-    // d = "Display" — move the frontmost window to a specific monitor.
-    // Matched by name substring so unplugging or rearranging monitors doesn't
-    // break it; a disconnected display is a silent no-op.
+    // d = "Display" — move windows to a specific monitor.
+    // Screens are numbered by position (1 built-in, then externals left to right,
+    // top to bottom) so the same keys work at any desk; a missing screen is a
+    // silent no-op.
     d: {
-      u: display("Built-in"),
-      i: display("MSI"),
-      o: display("L24"),
+      u: display(1),
+      i: display(2),
+      o: display(3),
+      1: layout("work", {
+        1: ["com.google.Chrome", "net.whatsapp.WhatsApp"],
+        2: ["com.googlecode.iterm2", "com.apple.dt.Xcode", "com.microsoft.VSCode"],
+        3: [
+          "com.microsoft.teams2",
+          "md.obsidian",
+          "com.microsoft.Outlook",
+          "com.apple.iphonesimulator",
+          "com.anthropic.claudefordesktop",
+        ],
+      }),
     },
 
     // s = "System"

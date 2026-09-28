@@ -220,18 +220,42 @@ export function window(name: string): LayerCommand {
   };
 }
 
+const moveToDisplay =
+  "osascript -l JavaScript ~/Documents/Workspace/MyApps/karabiner/scripts/move_to_display.js";
+
 /**
- * Move the frontmost window to a connected display, matched by name substring,
- * and maximize it there. No-op when that display isn't connected.
+ * Move the frontmost window to a connected display by position, and maximize it
+ * there: 1 is the built-in display, then externals left to right, top to bottom.
+ * No-op when that display isn't connected.
  */
-export function display(name: string): LayerCommand {
+export function display(screen: number): LayerCommand {
   return {
     to: [
       {
-        shell_command: `osascript -l JavaScript ~/Documents/Workspace/MyApps/karabiner/scripts/move_to_display.js '${name}'`,
+        shell_command: `${moveToDisplay} ${screen}`,
       },
     ],
-    description: `Window: Move to ${name}`,
+    description: `Window: Move to screen ${screen}`,
+  };
+}
+
+/**
+ * Move every window of the given apps (by bundle id) to their screen, numbered
+ * as in `display`. Apps that aren't running are skipped, not launched.
+ */
+export function layout(
+  name: string,
+  screens: { [screen: number]: string[] }
+): LayerCommand {
+  return {
+    to: [
+      {
+        shell_command: Object.entries(screens)
+          .map(([screen, bundleIds]) => `${moveToDisplay} ${screen} ${bundleIds.join(" ")}`)
+          .join("; "),
+      },
+    ],
+    description: `Layout: ${name}`,
   };
 }
 

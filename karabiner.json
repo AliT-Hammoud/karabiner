@@ -1938,10 +1938,34 @@
               {
                 "to": [
                   {
-                    "shell_command": "osascript -l JavaScript ~/Documents/Workspace/MyApps/karabiner/scripts/move_to_display.js 'Built-in'"
+                    "shell_command": "osascript -l JavaScript ~/Documents/Workspace/MyApps/karabiner/scripts/move_to_display.js 1 com.apple.Safari net.whatsapp.WhatsApp; osascript -l JavaScript ~/Documents/Workspace/MyApps/karabiner/scripts/move_to_display.js 2 com.googlecode.iterm2 com.apple.dt.Xcode com.microsoft.VSCode; osascript -l JavaScript ~/Documents/Workspace/MyApps/karabiner/scripts/move_to_display.js 3 com.microsoft.teams2 md.obsidian com.microsoft.Outlook com.apple.iphonesimulator"
                   }
                 ],
-                "description": "Window: Move to Built-in",
+                "description": "Layout: work",
+                "type": "basic",
+                "from": {
+                  "key_code": "1",
+                  "modifiers": {
+                    "optional": [
+                      "any"
+                    ]
+                  }
+                },
+                "conditions": [
+                  {
+                    "type": "variable_if",
+                    "name": "hyper_sublayer_d",
+                    "value": 1
+                  }
+                ]
+              },
+              {
+                "to": [
+                  {
+                    "shell_command": "osascript -l JavaScript ~/Documents/Workspace/MyApps/karabiner/scripts/move_to_display.js 1"
+                  }
+                ],
+                "description": "Window: Move to screen 1",
                 "type": "basic",
                 "from": {
                   "key_code": "u",
@@ -1962,10 +1986,10 @@
               {
                 "to": [
                   {
-                    "shell_command": "osascript -l JavaScript ~/Documents/Workspace/MyApps/karabiner/scripts/move_to_display.js 'MSI'"
+                    "shell_command": "osascript -l JavaScript ~/Documents/Workspace/MyApps/karabiner/scripts/move_to_display.js 2"
                   }
                 ],
-                "description": "Window: Move to MSI",
+                "description": "Window: Move to screen 2",
                 "type": "basic",
                 "from": {
                   "key_code": "i",
@@ -1986,10 +2010,10 @@
               {
                 "to": [
                   {
-                    "shell_command": "osascript -l JavaScript ~/Documents/Workspace/MyApps/karabiner/scripts/move_to_display.js 'L24'"
+                    "shell_command": "osascript -l JavaScript ~/Documents/Workspace/MyApps/karabiner/scripts/move_to_display.js 3"
                   }
                 ],
-                "description": "Window: Move to L24",
+                "description": "Window: Move to screen 3",
                 "type": "basic",
                 "from": {
                   "key_code": "o",
