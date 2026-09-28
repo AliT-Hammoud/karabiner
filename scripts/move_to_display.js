@@ -1,7 +1,12 @@
 #!/usr/bin/env osascript -l JavaScript
 
-// Move the frontmost window to a display matched by name, and maximize it there.
-// Usage: osascript -l JavaScript move_to_display.js 'MSI'
+// Move the frontmost window to a display, and maximize it there.
+// Usage: osascript -l JavaScript move_to_display.js 2      (by position)
+//        osascript -l JavaScript move_to_display.js 'MSI'  (by name)
+//
+// A number picks by position, so the same shortcut works at any desk:
+// 1 is the built-in display, then externals left to right (top to bottom when
+// stacked) as arranged in System Settings → Displays.
 //
 // Two ways to move a window, tried in order:
 //   1. The app's own AppleScript `bounds` (Apple Events). Works for scriptable
@@ -17,7 +22,9 @@ function run(argv) {
   var pattern = String(argv[0] || "").toLowerCase();
   if (pattern === "") return;
 
-  var target = findScreen(pattern);
+  var target = /^\d+$/.test(pattern)
+    ? screenAtPosition(parseInt(pattern, 10))
+    : findScreen(pattern);
   // Not connected right now: nothing to do, and not worth an error notification.
   if (target === null) {
     debug(pattern + ": not connected");
@@ -59,6 +66,24 @@ function findScreen(pattern) {
     if (name.indexOf(pattern) !== -1) return screen;
   }
   return null;
+}
+
+// 1-based: built-in display first, then externals left to right, top to bottom.
+function screenAtPosition(position) {
+  var screens = $.NSScreen.screens;
+  var builtIn = [];
+  var externals = [];
+  for (var i = 0; i < screens.count; i++) {
+    var screen = screens.objectAtIndex(i);
+    var name = String(ObjC.unwrap(screen.localizedName)).toLowerCase();
+    (name.indexOf("built-in") !== -1 ? builtIn : externals).push(screen);
+  }
+  // Stacked screens share an x; the upper one comes first (Cocoa y grows upward).
+  externals.sort(function (a, b) {
+    return a.frame.origin.x - b.frame.origin.x || b.frame.origin.y - a.frame.origin.y;
+  });
+  var ordered = builtIn.concat(externals);
+  return position >= 1 && position <= ordered.length ? ordered[position - 1] : null;
 }
 
 // Cocoa measures from the bottom-left of the primary screen with y going up;
