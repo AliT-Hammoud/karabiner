@@ -1938,7 +1938,7 @@
               {
                 "to": [
                   {
-                    "shell_command": "osascript -l JavaScript ~/Documents/Workspace/MyApps/karabiner/scripts/move_to_display.js 1 com.apple.Safari net.whatsapp.WhatsApp; osascript -l JavaScript ~/Documents/Workspace/MyApps/karabiner/scripts/move_to_display.js 2 com.googlecode.iterm2 com.apple.dt.Xcode com.microsoft.VSCode; osascript -l JavaScript ~/Documents/Workspace/MyApps/karabiner/scripts/move_to_display.js 3 com.microsoft.teams2 md.obsidian com.microsoft.Outlook com.apple.iphonesimulator"
+                    "shell_command": "osascript -l JavaScript ~/Documents/Workspace/MyApps/karabiner/scripts/move_to_display.js 1 com.google.Chrome net.whatsapp.WhatsApp; osascript -l JavaScript ~/Documents/Workspace/MyApps/karabiner/scripts/move_to_display.js 2 com.googlecode.iterm2 com.apple.dt.Xcode com.microsoft.VSCode; osascript -l JavaScript ~/Documents/Workspace/MyApps/karabiner/scripts/move_to_display.js 3 com.microsoft.teams2 md.obsidian com.microsoft.Outlook com.apple.iphonesimulator com.anthropic.claudefordesktop"
                   }
                 ],
                 "description": "Layout: work",
