@@ -89,19 +89,35 @@ Window positioning goes through Raycast's window management commands. Split pane
 
 | Key | Action |
 | --- | --- |
-| `u` | Move frontmost window to the built-in display |
-| `i` | Move frontmost window to the MSI |
-| `o` | Move frontmost window to the L24 |
+| `u` | Move frontmost window to screen 1 |
+| `i` | Move frontmost window to screen 2 |
+| `o` | Move frontmost window to screen 3 |
+| `1` | Arrange the **work** layout (below) |
 
 Unlike `w`'s previous/next display, these target a specific monitor, which matters once
-three are connected. `scripts/move_to_display.js` matches the display by name substring
-(via `NSScreen.localizedName`) and maximizes the window on it, so rearranging or
-unplugging monitors doesn't break the bindings — a disconnected display is a no-op.
+three are connected. Screens are numbered by position: 1 is the built-in display, then
+externals left to right (top to bottom when stacked) as arranged in System Settings →
+Displays. That way the same keys work at any desk, and a screen that isn't connected is a
+no-op.
 
-The script moves the window through the app's own AppleScript `bounds`, which needs no
-Accessibility permission and covers scriptable apps (iTerm2, Chrome, Finder). It falls
-back to System Events for everything else, but that path is inert unless `osascript` is
-granted Accessibility, so non-scriptable apps (VS Code, Postman) won't move.
+**Work layout (`1`)** moves every window of these apps to its screen and maximizes it
+there. Apps that aren't running are skipped, not launched.
+
+| Screen | Apps |
+| --- | --- |
+| 1 | Google Chrome, WhatsApp |
+| 2 | iTerm2, Xcode, Visual Studio Code |
+| 3 | Microsoft Teams, Obsidian, Microsoft Outlook, Simulator, Claude |
+
+To change the arrangement or add another layout, edit the `layout()` call under `d` in
+`rules.ts`; apps are listed by bundle id.
+
+`scripts/move_to_display.js` moves a window through the app's own AppleScript `bounds`,
+which covers scriptable apps (iTerm2, Chrome, Finder). Everything else (VS Code, Claude,
+Teams, Obsidian, Simulator, WhatsApp) falls back to System Events, which needs
+Accessibility. A Karabiner keypress gets this through the grant on
+Karabiner-Console-User-Server, so running the script from a terminal can behave
+differently.
 
 ### `s` — System
 
